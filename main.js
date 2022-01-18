@@ -203,8 +203,8 @@ function updateWeather(weatherData, placeName) {
             ".futureDayIcon img"
          ).src = `./assets/weatherIcons/${dayData.icon}.svg`;
          dayEl.querySelector(".futureDayState").innerText = dayData.conditions;
-         dayEl.querySelector(".futureDayTemp").innerText = `${Math.round(
+         dayEl.querySelector(".futureDayTemp").innerHTML = `${Math.round(
             dayData.tempmax
-         )}° | ${Math.round(dayData.tempmin)}°`;
+         )}° &nbsp; | &nbsp; ${Math.round(dayData.tempmin)}°`;
       });
 }
