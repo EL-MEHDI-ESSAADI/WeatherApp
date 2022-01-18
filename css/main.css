@@ -556,10 +556,12 @@ main .futureDays {
 
 main .futureDays .futureDayIcon {
   margin-block: 2rem 1.5rem;
+  display: flex;  
+  height: 5rem;
 }
 
 main .futureDays .futureDayIcon img {
-  width: 7rem;
+  max-width: 7rem;
   margin: auto;
 }
 
