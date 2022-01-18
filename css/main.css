@@ -495,9 +495,12 @@ main .currentAndControle .todayInfo .todaytempe span {
 }
 
 main .currentAndControle .todayInfo .todaytempe span::after {
-  content: "°";
-  position: absolute;
-  left: 100%;
+                  content: "°c";
+                  position: absolute;
+                  left: 100%;
+                  top: 0;
+                  height: 100%;
+                  font-size: .6em;
 }
 
 @media (min-width: 27.4375em) {
