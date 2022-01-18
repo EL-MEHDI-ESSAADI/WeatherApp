@@ -32,7 +32,7 @@ const days = {
    Sat: "Saturday",
 };
 let addressApi =
-   "http://api.openweathermap.org/geo/1.0/reverse?{HERELATLON}&limit=1&appid=68c78165246ce7daf4615739a4bba4e5";
+   "https://api.openweathermap.org/geo/1.0/reverse?{HERELATLON}&limit=1&appid=68c78165246ce7daf4615739a4bba4e5";
 let weatherApi =
    "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{location}/next3days?unitGroup=metric&key=D4G7SD9A22XR3NZV9X6U4U9GT";
 
