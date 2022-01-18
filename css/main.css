@@ -563,6 +563,7 @@ main .futureDays .futureDayIcon {
 main .futureDays .futureDayIcon img {
   max-width: 7rem;
   margin: auto;
+  max-height: 100%;
 }
 
 main .futureDays > * {
