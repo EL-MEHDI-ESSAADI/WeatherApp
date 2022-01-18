@@ -1,0 +1,160 @@
+main {
+   .currentAndControle {
+      padding: 4.5rem 1rem;
+      @media (min-width: 23.4375em) {
+         padding: 4.5rem 2rem;
+      }
+      .controleContainer {
+         position: relative;
+         .controle {
+            justify-content: center;
+            --flex-gap: 0.9rem;
+            margin-bottom: 1.8rem;
+
+            button {
+               width: 40px;
+               aspect-ratio: 1;
+               border-radius: 50%;
+               border: 1px solid var(--clr-trn-white);
+               color: var(--clr-white);
+               transition: border 0.4s ease-out;
+               &.attract {
+                  animation: reminderLocation 1s ease-in-out 4 alternate;
+               }
+               &.active {
+                  background-color: var(--clr-trn-white);
+               }
+
+               &:hover {
+                  border: 1px solid rgba(255, 255, 255, 0.75);
+               }
+
+               svg {
+                  width: 0.82rem;
+                  margin: auto;
+               }
+            }
+
+            @media (min-width: 27.4375em) {
+               flex-direction: column;
+               position: absolute;
+               --flex-gap: 0.625rem;
+               top: 0;
+               left: 0;
+            }
+         }
+      }
+
+      .todayInfo {
+         .todayIcon {
+            margin-block: 3rem 1.5rem;
+            img {
+               margin: auto;
+               width: 9.375rem;
+            }
+         }
+
+         .todaytempe,
+         .todayState {
+            font-weight: 300;
+         }
+
+         .todayDate {
+            @media (max-width: 23.4375em) {
+               font-size: 1rem;
+            }
+         }
+
+         .todaytempe {
+            span {
+               position: relative;
+               &::after {
+                  content: "°";
+                  position: absolute;
+                  left: 100%;
+               }
+            }
+         }
+         @media (min-width: 27.4375em) {
+            .placeName {
+               padding-inline: 2rem;
+            }
+         }
+      }
+   }
+
+   .futureDays {
+      width: 100%;
+      gap: 0;
+      padding: 3rem 1rem 5rem;
+
+      @media (min-width: 23.4375em) {
+         padding: 3rem 2rem 5rem !important;
+      }
+      @media (max-width: 34.375em) {
+         flex-direction: column;
+
+         .futureDay {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-left: none !important;
+            padding: 1.5rem 0rem 1.5rem 1.5rem;
+            text-align: left;
+
+            &:where(:first-child, :last-child) {
+               border-top: 1px solid var(--clr-trn-white);
+               border-bottom: 1px solid var(--clr-trn-white);
+            }
+            .futureDayIcon {
+               margin-block: 1rem 0.5rem;
+               grid-row: 1 / 4;
+               grid-column: 2;
+
+               img {
+                  width: 5rem;
+               }
+            }
+         }
+      }
+
+      .futureDayIcon {
+         margin-block: 2rem 1.5rem;
+
+         img {
+            width: 7rem;
+            margin: auto;
+         }
+      }
+
+      & > * {
+         flex-grow: 1;
+      }
+
+      .futureDay:not(:first-child) {
+         border-left: 1px solid var(--clr-trn-white);
+      }
+   }
+}
+
+.footer {
+   padding: 2rem 1rem 3rem;
+   font-size: 1.2rem;
+   letter-spacing: 0.25px;
+
+   * {
+      display: inline-block;
+
+   }
+   .ownerName, a {
+      text-decoration: underline;
+      font-weight: bold;
+   }
+}
+@keyframes reminderLocation {
+   0% {
+      background-color: transparent;
+   }
+   100% {
+      background-color: var(--clr-trn-white);
+   }
+}

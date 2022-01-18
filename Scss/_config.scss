@@ -1,0 +1,329 @@
+/* ------------------- */
+/* Custom properties   */
+/* ------------------- */
+:root {
+   /* colors */
+   --clr-light-blue: #2e79b2;
+   --clr-white: #ffffff;
+   --clr-trn-white: #ffffff40;
+   --clr-drk-yellow: #FFECAE;
+   --clr-light-dark: #00000080;
+   --clr-dark: #000000;
+
+   /* font sizes */
+
+   --fs-600: 3rem;
+   --fs-500: 2rem; 
+   --fs-400: 1.2rem; 
+   --fs-300: 1.17rem; 
+   --fs-200: 1.3rem; 
+   
+   @media (min-width: 23.4375em) {
+      /* font-sizes */
+      --fs-200: 1.4rem; 
+      
+   }
+   
+   @media (min-width: 34.375em ) {
+      /* font-sizes */
+      --fs-600: 3.875rem;
+      --fs-500: 2.5625rem;
+      --fs-400: 1.1875rem;
+      --fs-300: 1.2875rem;  
+      --fs-200: 1.6rem; 
+      
+   }
+   @media (min-width: 55em ) {
+      /* font-sizes */
+      --fs-600: 4.5rem;
+      --fs-500: 3rem;
+      --fs-300: 1.4rem;  
+      --fs-400: 1.3125rem;
+      --fs-200: 1.7rem; 
+
+   }
+
+}
+/* ------------------- */
+/* reset classes     */
+/* ------------------- */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+a {
+   display: block;
+   text-decoration: none;
+   color: var(--clr-white);
+   background-color: transparent;
+}
+
+ul {
+   list-style: none;
+}
+
+button {
+   cursor: pointer;
+   border: 0;
+   background-color: initial;
+   font-family: sans-serif !important;
+}
+
+
+
+:not(img)::selection {
+   background-color: var(--clr-drk-yellow);
+   color: var(--clr-dark);
+}
+img::selection {
+   background-color: transparent;
+}
+
+
+/* set up the body */
+body {
+   position: relative;
+   min-height: 100vh; 
+   font-family: 'Alegreya Sans', sans-serif;
+   text-align: center;
+   color: var(--clr-white);
+   background-color: var(--clr-light-blue);
+   line-height: 1.4;
+}
+
+/* make images easier to work with */
+img,
+picutre,svg {
+   max-width: 100%;
+   display: block;
+}
+
+
+h1 {
+   line-height: 1.1;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+   *,
+   *::before,
+   *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+   }
+}
+
+html {
+   -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+    ========================================================================== */
+
+/**
+  * Render the `main` element consistently in IE.
+  */
+
+main {
+   display: block;
+}
+
+/**
+  * Remove the border on images inside links in IE 10.
+  */
+
+img {
+   border-style: none;
+}
+
+/* Forms
+    ========================================================================== */
+
+/**
+  * 1. Change the font styles in all browsers.
+  * 2. Remove the margin in Firefox and Safari.
+  */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+   font-family: inherit; /* 1 */
+   font-size: 100%; /* 1 */
+   line-height: 1.15; /* 1 */
+   margin: 0; /* 2 */
+}
+
+/**
+  * Show the overflow in IE.
+  * 1. Show the overflow in Edge.
+  */
+
+button,
+input {
+   /* 1 */
+   overflow: visible;
+}
+
+/**
+  * Remove the inheritance of text transform in Edge, Firefox, and IE.
+  * 1. Remove the inheritance of text transform in Firefox.
+  */
+
+button,
+select {
+   /* 1 */
+   text-transform: none;
+}
+
+/**
+  * Correct the inability to style clickable types in iOS and Safari.
+  */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+   -webkit-appearance: button;
+}
+
+/**
+  * Remove the inner border and padding in Firefox.
+  */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+   border-style: none;
+   padding: 0;
+}
+
+/**
+  * Restore the focus styles unset by the previous rule.
+  */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+   outline: 1px dotted ButtonText;
+}
+
+
+/**
+  * 1. Correct the odd appearance in Chrome and Safari.
+  * 2. Correct the outline style in Safari.
+  */
+
+[type="search"] {
+   -webkit-appearance: textfield; /* 1 */
+   outline-offset: -2px; /* 2 */
+}
+
+/**
+  * Remove the inner padding in Chrome and Safari on macOS.
+  */
+
+[type="search"]::-webkit-search-decoration {
+   -webkit-appearance: none;
+}
+
+
+// Utility classes are classes tha have just one simple job to set flex or size o color just one job
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+.flex {
+   display: flex;
+   gap: var(--flex-gap, 1rem); // now flex support gap
+}
+
+.grid {
+   display: grid;
+   gap: var(--grid-gap, 1rem);
+}
+
+.d-block {
+   display: block;
+}
+
+.uppercase {
+   text-transform: uppercase;
+}
+
+
+.skip-to-content {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 9999;
+   background: var(--clr-white);
+   color: var(--clr-dark);
+   padding: 0.5em 1em;
+   transform: translateY(-105%);
+   transition: transform 250ms ease-in;
+   &:focus {
+      transform: translateY(0);
+   }
+}
+
+
+/* colors */
+
+.bg-darken-yellow {
+   background-color: var(--clr-drk-yellow);
+}
+
+
+.text-lighten-dark {
+   color: var(--clr-light-dark);
+}
+
+
+/* typography */
+
+
+.fs-600 {
+   font-size: var(--fs-600);
+}
+.fs-500 {
+   font-size: var(--fs-500);
+}
+.fs-400 {
+   font-size: var(--fs-400);
+}
+.fs-300 {
+   font-size: var(--fs-300);
+}
+.fs-200 {
+   font-size: var(--fs-200);
+}
+
+
+
+/* ------------------- */
+/* Component classes     */
+/* ------------------- */
+
+// svg
+
+
+.CreaterLogo {
+   position: absolute;
+   bottom: 15px;
+   right: 15px;
+   width: 70px;
+   z-index: 999;
+   filter: drop-shadow(1px 1px 1px black);
+}
+

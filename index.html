@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description" content="Weather forecast">
+      <meta name="keywords" content="Weather, forecast">
+      <title>Weather</title>
+      <!-- web site icon -->
+      <link rel="shortcut icon" href="./assets/fav.ico" type="image/x-icon" />
+      <link rel="icon" href="./assets/fav.ico" type="image/x-icon" sizes="192x192" />
+      <link
+         rel="appel-touch-icon"
+         href="./assets/fav.ico"
+         type="image/x-icon"
+         sizes="180x180"
+      />
+      <!-- css links -->
+      <link rel="stylesheet" href="./css/main.css" />
+      <!-- font links -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;700&display=swap"
+         rel="stylesheet"
+      />
+      <!-- scripts -->
+      <script defer src="./main.js"></script>
+   </head>
+
+   <body>
+      <!-- start skip to content link -->
+      <a href="#main" class="skip-to-content">Skip to content</a>
+      <!-- end skip to content link -->
+
+      <!-- start reminder -->
+      <div class="reminder" id="reminder">
+         <div class="states">
+            <div class="remind bg-darken-yellow text-lighten-dark">
+               Click on the
+               <span
+                  ><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true"
+                     focusable="false"
+                     role="img"
+                     viewBox="0 0 512 512"
+                  >
+                     <path
+                        d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"
+                     ></path></svg
+               ></span>
+               button to share your current location.
+            </div>
+            <div class="success hide">
+               <span
+                  ><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true"
+                     focusable="false"
+                     role="img"
+                     viewBox="0 0 512 512"
+                  >
+                     <path
+                        fill="white"
+                        d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"
+                     /></svg
+               ></span>
+               Success! Location found.
+            </div>
+            <div class="fail hide">
+               <span
+                  ><svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     aria-hidden="true"
+                     focusable="false"
+                     role="img"
+                     viewBox="0 0 576 512"
+                  >
+                     <path
+                        d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"
+                     />
+                  </svg>
+               </span>
+               Please Allow us to know your location
+            </div>
+         </div>
+         <button tabindex="-1" aria-label="close" class="close" aria-controls="reminder">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               aria-hidden="true"
+               focusable="false"
+               role="img"
+               viewBox="0 0 352 512"
+            >
+               <path
+                  fill="white"
+                  d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+               />
+            </svg>
+         </button>
+      </div>
+      <!-- end reminder-->
+
+      <!-- start search model -->
+      <div  class="searchModal" id="searchModal" aria-hidden="true">
+         <button tabindex="-1" aria-label="close modal" class="closeModal" aria-controls="searchModal">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               aria-hidden="true"
+               focusable="false"
+               role="img"
+               viewBox="0 0 352 512"
+            >
+               <path
+                  fill="white"
+                  d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+               ></path>
+            </svg>
+         </button>
+         <input tabindex="-1" placeholder="Search" type="text" />
+      </div>
+      <!-- start search model -->
+
+      <!-- start main -->
+      <main id="main">
+         <!-- <input type="text"> -->
+         <section class="currentAndControle">
+            <div class="controleContainer">
+               <div class="controle flex">
+                  <button
+                     title="Your location"
+                     aria-label="your location"
+                     class="currentLocation"
+                  >
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        focusable="false"
+                        role="img"
+                        viewBox="0 0 512 512"
+                     >
+                        <path
+                           fill="white"
+                           d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"
+                        />
+                     </svg>
+                  </button>
+                  <button
+                     title="Search for a location"
+                     aria-label="search for a location"
+                     class="searchBtn"
+                  >
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                        focusable="false"
+                        role="img"
+                        viewBox="0 0 512 512"
+                     >
+                        <path
+                           fill="white"
+                           d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+                        />
+                     </svg>
+                  </button>
+               </div>
+            </div>
+            <div class="todayInfo">
+               <h1 class="placeName fs-500">- -</h1>
+               <p class="todayDate fs-400">- -</p>
+               <div class="todayIcon">
+                  <img
+                     src="./assets/weatherIcons/clear-day.svg"
+                     alt="weather"
+                  />
+               </div>
+               <h2 class="rightDegree todaytempe fs-600"><span>- -</span></h3>
+               <h2 class="todayState fs-200">- -</h3>
+            </div>
+         </section>
+         <section class="futureDays flex">
+            <div class="first futureDay">
+               <h3 class="futureDayName fs-300 uppercase">- -</h3>
+               <div class="futureDayIcon">
+                  <img
+                     src="assets/weatherIcons/partly-cloudy-day.svg"
+                     alt="weather"
+                  />
+               </div>
+               <P class="futureDayState fs-400">- -</P>
+               <P class="futureDayTemp fs-400">- -° | - -°</P>
+            </div>
+            <div class="second futureDay">
+               <h3 class="futureDayName fs-300 uppercase">- -</h3>
+               <div class="futureDayIcon">
+                  <img
+                     src="assets/weatherIcons/partly-cloudy-day.svg"
+                     alt="weather"
+                  />
+               </div>
+               <P class="futureDayState fs-400">- -</P>
+               <P class="futureDayTemp fs-400">- -° | - -°</P>
+            </div>
+            <div class="third futureDay">
+               <h3 class="futureDayName fs-300 uppercase">- -</h3>
+               <div class="futureDayIcon">
+                  <img
+                     src="assets/weatherIcons/partly-cloudy-day.svg"
+                     alt="weather"
+                  />
+               </div>
+               <P class="futureDayState fs-400">- -</P>
+               <P class="futureDayTemp fs-400">- -° | - -°</P>
+            </div>
+         </section>
+      </main>
+      <!-- end main -->
+
+
+      <!-- start footer  -->
+      <footer class="footer">
+         Copyright ©<span id="thisYear">2022</span> All rights reserved | This
+         app was made with <span style="color: red">♥</span> by
+         <span class="ownerName"
+            >Essaadi Elmehdi</span
+         >
+         | Source on github <a target="_blanck" href="#">HERE</a>
+      </footer>
+      <!-- end footer  -->
+      <!-- start my personal logo -->
+      <svg
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="-515.544 -109.94 1386.919 610.459"
+         aria-hidden="true"
+         class="CreaterLogo"
+      >
+         <defs>
+            <linearGradient
+               id="a"
+               gradientUnits="userSpaceOnUse"
+               x1="1162.05"
+               y1="-9.436"
+               x2="-16.674"
+               y2="1149.548"
+               spreadMethod="pad"
+            >
+               <stop offset="0" stop-color="#ffee72" />
+               <stop offset=".24" stop-color="#e5da64" />
+               <stop offset=".67" stop-color="#3bb74b" />
+               <stop offset=".89" stop-color="#23787d" />
+               <stop offset="1" stop-color="#102694" />
+            </linearGradient>
+            <linearGradient
+               id="b"
+               gradientUnits="userSpaceOnUse"
+               x1="562.06"
+               y1="-158.159"
+               x2="454.903"
+               y2="309.947"
+            >
+               <stop offset="0" stop-color="#71cd99" />
+               <stop offset=".5" stop-color="#33b96f" />
+               <stop offset="1" stop-color="#00ab51" />
+            </linearGradient>
+            <linearGradient
+               gradientUnits="userSpaceOnUse"
+               x1="1513.462"
+               y1="439.02"
+               x2="1513.462"
+               y2="834.7"
+               id="c"
+               gradientTransform="matrix(-.66604 -.83387 .8169 -.72026 2117.599 2153.475)"
+            >
+               <stop offset="0" style="stop-color: #3bb74b" />
+               <stop offset=".493" style="stop-color: #e5da64" />
+               <stop offset="1" style="stop-color: #ffee72" />
+            </linearGradient>
+         </defs>
+         <g transform="matrix(.12959 0 0 .19397 -475.802 191.642)">
+            <g>
+               <path
+                  class="shp0"
+                  d="m691.59 4.79-251.1 570.63L346 790.14l-94.49-214.72L346 360.7l80.5-182.94C472.76 72.64 576.75 4.79 691.59 4.79Z"
+                  style="fill: url(#a); fill-rule: nonzero"
+                  transform="matrix(6.25493 0 0 3.58056 -309.25 -1556.534)"
+               />
+               <path
+                  class="shp1"
+                  d="M107.75 52.65C246.4 35.27 385.05 17.88 523.69.49L.41.79l228.23 518.66 96.95-209.13L211.65 51.39l-103.9 1.26Z"
+                  style="fill: url(#b); paint-order: fill; stroke: #bada55"
+                  transform="matrix(6.25493 0 0 3.58056 -309.25 -1556.534)"
+               />
+               <path
+                  class="shp2"
+                  d="m230.33 527.3 21.18 48.12L346 360.7l-19.25-43.75c-.39-.87-.77-1.75-1.16-2.63l-96.95 209.13 1.69 3.85Z"
+                  style="fill: #289942; paint-order: fill; stroke: #bada55"
+                  transform="matrix(6.25493 0 0 3.58056 -309.25 -1556.534)"
+               />
+            </g>
+            <path
+               fill-rule="evenodd"
+               class="shp0"
+               d="M4301.855 274.454c-197.031-84.474-380.34-203.742-591.093-352.936 293.647 129.599 588.953 230.992 886.439 295.117 252.748 54.48 397.338 23.26 639.454 44.688 199.679 17.684 433.502 61.326 560.064 223.37-78.895-178.896-310.231-317.984-677.919-393.307l11.743-36.289c308.934 70.634 863.18 274.365 911.756 630.808 24.154 177.188-46.958 272.196-199.599 386.955-164.892 124.013-389.02 199.751-653.885 199.751-655.45 0-935.576-413.79-935.576-763.556 0-73.389 15.862-154.085 48.616-234.601ZM5832.87 703.072c-32.647-173.095-202.528-288.867-351.812-322.335-271.647-60.91-658.62 56.548-969.734-31.77l-3.732-1.068c-4.52 34.479-6.861 70.657-6.861 108.565 0 452.654 323.646 736.137 756.092 736.137 111.837 0 282.614-26.048 420.664-130.308 124.1-93.749 181.864-218.795 155.383-359.221ZM3432.509-482.559c119.072 34.221 236.512 70.083 364.946 94.996 287.187-79.707 180.714 245.214-18.617 47.003-112.238-56.716-229.558-98.56-346.329-141.999Zm582.948 209.272 129.303 38.707c-53.484 116.469-280.821 78.785-588.043 61.832 187.508 1.203 361.736-10.939 458.74-100.539Zm-273.024 161.82c187.521 1.214 361.736-10.927 458.753-100.527l129.29 38.695c-53.471 116.48-280.794 78.785-588.043 61.832Zm181.597 56.548c187.521 1.214 361.736-10.927 458.74-100.516l129.303 38.695C4458.602-.282 4231.278-37.966 3924.03-54.919Zm187.147 58.954c187.535 1.203 361.749-10.939 458.74-100.527l129.303 38.706c-53.471 116.469-280.794 78.785-588.043 61.821Zm193.393 63.136c187.508 1.214 361.736-10.927 458.74-100.527l129.303 38.695c-53.484 116.469-280.808 78.785-588.043 61.832Zm179.31 68.858c187.535 1.214 361.749-10.927 458.74-100.527l129.303 38.695c-53.471 116.469-280.794 78.785-588.043 61.832Zm-337.836-398.703-126.909-43.934c-.816-121.135-120.664-228.115-261.027-332.644 241.875 160.133 440.858 259.929 387.936 376.578Zm193.393 63.125-126.923-43.923c-.802-121.146-120.663-228.126-261.027-332.645 241.889 160.134 440.872 259.93 387.95 376.568Zm-202.983-311.183c241.889 160.133 440.859 259.941 387.95 376.578l-126.923-43.923c-.815-121.145-120.663-228.126-261.027-332.655Zm197.593 62.012c241.888 160.133 440.858 259.929 387.936 376.578l-126.909-43.923c-.816-121.145-120.663-228.137-261.027-332.655Zm178.066 59.437c241.875 160.133 440.859 259.93 387.936 376.59L4773.14-56.628c-.829-121.145-120.677-228.114-261.027-332.655Zm185.796 55.424c241.889 160.133 440.872 259.93 387.95 376.578L4958.936-1.204c-.802-121.157-120.649-228.126-261.027-332.655ZM6075.306 795.977c30.989-134.04-51.852-310.058-194.65-463.525-82.64-334.904-372.703-509.236-691.841-509.236-47.051 0-92.524 2.946-136.178 8.769-21.466-20.258-47.867-40.989-78.119-62.608 70.375-12.523 146.302-19.314 227.898-19.314 538.505 0 946.463 276.614 946.463 729.268 0 112.219-25.666 219.39-73.573 316.646Z"
+               style="stroke: #4b705b; fill: #3bb74b"
+            />
+            <g>
+               <path
+                  class="shp1"
+                  d="M1644.22 439.02a3035.61 3035.61 0 0 0-44.92 32.82c-21.08 15.72-40.07 30.32-57.21 43.92-28.18 22.38-51.32 42.05-70.35 59.48-67.09 61.46-83.25 95.18-90.12 122.06-7.04 27.53-6.1 54.77-6.04 56.15 1.48 36.76 13.31 65.16 21.49 81.25 2.31-40.92 12.35-85.15 38.78-125.29 11.39-17.3 23.21-29.87 35.89-41.14 23.42-20.84 49.78-37.28 81.81-71.04.85-.89 1.7-1.8 2.56-2.72 26.35-28.28 53.78-65.51 76.88-114.89-23.54 64.54-54.29 106.37-79.44 133.34-1 1.07-1.99 2.12-2.96 3.14-24.57 25.67-52.52 46.79-78.85 84.36a302.98 302.98 0 0 0-14.97 23.62 325.645 325.645 0 0 0-25.05 55.3c22.73 3.61 72.08 7.2 118.04-21.08 9.59-5.91 18.21-13.28 26.12-21.3 41.45-42.01 55.67-92.56 63.62-123.86 17.87-70.38 12.33-132.98 4.72-174.12Z"
+                  style="fill: url(#c)"
+                  transform="matrix(7.71694 0 0 4.61168 -2347.806 -2256.98)"
+               />
+               <path
+                  class="shp2"
+                  d="M1527.23 488.04c-27.68-40.94-74.53-67.91-127.56-67.91-8.88 0-23.76.77-41.06 5.57-29.36 8.14-50.13 23.59-61.95 34.1a99.826 99.826 0 0 0-24.45-8.11c-5.41-1.04-14.66-2.82-26.49-1.73-13.05 1.21-19.42 5-27.96 2.02-1.39-.48-4.55-1.74-9.26-2.63-3.25-.62-6.62-.95-10.06-.95-29.75 0-53.87 24.12-53.87 53.87 0 29.76 24.12 53.88 53.87 53.88 19.6 0 36.74-10.47 46.17-26.11 2.55-.34 5.15-.54 7.77-.61a153.416 153.416 0 0 0-6.59 44.58V737h81.81V574.01c0-11.18 2.55-21.77 7.11-31.22a72.98 72.98 0 0 1 5.21-9.05c1.3-1.91 2.68-3.77 4.15-5.55 13.23-16.02 33.24-26.25 55.6-26.25 22.35 0 42.36 10.23 55.59 26.25 1.47 1.78 2.86 3.64 4.16 5.55 1.94 2.88 3.68 5.9 5.2 9.05 1.39 2.88 2.59 5.86 3.59 8.93 17.92-16.17 39.27-34.21 64.78-54.47-1.82-3.14-3.73-6.22-5.76-9.21Z"
+                  style="fill: #3bb74b"
+                  transform="matrix(7.71694 0 0 4.61168 -2347.806 -2256.98)"
+               />
+               <path
+                  class="shp3"
+                  d="M1532.99 497.25c-25.51 20.26-46.86 38.3-64.78 54.47a71.745 71.745 0 0 1 3.53 22.29v1.23c19.03-17.43 42.17-37.1 70.35-59.48-2.62-6.4-5.68-12.58-9.1-18.51Z"
+                  style="fill: #3bb74b"
+                  transform="matrix(7.71694 0 0 4.61168 -2347.806 -2256.98)"
+               />
+            </g>
+         </g>
+      </svg>
+      <!-- end my personal logo -->
+   </body>
+</html>
