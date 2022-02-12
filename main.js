@@ -47,11 +47,9 @@ window.addEventListener("DOMContentLoaded", (_) => {
 
 // add event lister to close info button
 closeReminderBtn.addEventListener("click", (_) => {
-   reminderEl.classList.remove("displayInfo")
+   reminderEl.classList.remove("displayInfo");
    closeReminderBtn.tabIndex = "-1";
-}
-   
-);
+});
 
 // add event listner for current location button
 currentLocationBtn.addEventListener("click", display);
@@ -84,7 +82,7 @@ searchInputEl.addEventListener("keydown", function (e) {
    this.value = "";
 
    let url = weatherApi.replace("{location}", inputValue);
-   makeRequest(url, (weatherData) => {
+   fetchUrl(url, (weatherData) => {
       document.documentElement.style.overflow = "initial";
       modalSearchEl.classList.remove("showSearch");
       currentLocationBtn.classList.remove("active");
@@ -92,12 +90,12 @@ searchInputEl.addEventListener("keydown", function (e) {
       searchInputEl.tabIndex = "-1";
       closeModelBtn.tabIndex = "-1";
       updateWeather(weatherData);
-   });
+   }).catch(error => console.error(error));;
 });
 
 // functions
 function display() {
-   if(currentLocationBtn.classList.contains("active")) return;
+   if (currentLocationBtn.classList.contains("active")) return;
    // get geolocation ou the user
    navigator.geolocation.getCurrentPosition(successToGetLoca, failToGetLoca);
 }
@@ -108,20 +106,31 @@ function successToGetLoca(location) {
       "{HERELATLON}",
       `lat=${location.coords.latitude}&lon=${location.coords.longitude}`
    );
-   makeRequest(url, ([address]) => {
+   fetchUrl(url, update_url)
+      .then((url_address) =>{
+         return fetchUrl(url_address.url, (weatherData) => {
+            updateWeather(
+               weatherData,
+               url_address.address.name + ", " + url_address.address.country
+            );
+         })
+      }
+      )
+      .catch(error => console.error(error));
+
+
+   // make location button active
+   currentLocationBtn.classList.add("active");
+   searchBtnEl.classList.remove("active");
+
+   function update_url([address]) {
       // set weather api url
       let url = weatherApi.replace(
          "{location}",
          `${address.lat},${address.lon}`
       );
-      makeRequest(url, (weatherData) => {
-         updateWeather(weatherData, address.name + ", " + address.country);
-      });
-   });
-
-   // make location button active
-   currentLocationBtn.classList.add("active");
-   searchBtnEl.classList.remove("active");
+      return { url, address };
+   }
 }
 
 function failToGetLoca() {
@@ -135,27 +144,18 @@ function updateState(newState) {
    reminderEl.querySelector(`.${newState}`).classList.remove("hide");
 }
 
-function makeRequest(url = "", fun = (_) => "") {
-   let httpRequest = new XMLHttpRequest();
-
-   httpRequest.responseType = "json";
-   httpRequest.open("GET", url);
-   httpRequest.addEventListener("readystatechange", (_) => {
-      if (httpRequest.readyState != XMLHttpRequest.DONE) return;
-      if (httpRequest.status != 200) {
-         if ((httpRequest.status = 400)) {
-            // allert invalid location if the location was wrong
-            window.alert(`Invalid location`);
-            return;
-         }
-         // allert Request error we if didn't receive data
-         window.alert("Request error");
-         return;
-      }
-      fun(httpRequest.response);
-   });
-   httpRequest.send();
+async function fetchUrl(url = "", fun = (_) => "") {
+   let response = await fetch(url), data;
+   if (response.ok) {
+      data = await response.json();
+   } else {
+   // allert invalid location if the location was wrong
+   window.alert(`Invalid location`);
+   await Promise.reject(new Error('invalid location'));
+   }
+   return fun(data);
 }
+
 
 function updateWeather(weatherData, placeName) {
    // display location find Info
